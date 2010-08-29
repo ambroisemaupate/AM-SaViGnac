@@ -7,7 +7,7 @@ package amsavignac.primitives;
 import org.jdom.Element;
 
 /**
- *
+ * Create a SVG Polygon 
  * @author ambroisemaupate
  */
 public class SVGPolygon extends java.awt.Polygon implements amsavignac.document.SVGElement {
