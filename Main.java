@@ -1,26 +1,25 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Here is a test app for the SaViGnac API
  */
-
-
 package amsavignac;
-
 
 import amsavignac.document.SVGDocument;
 import java.awt.Color;
+
 /**
- *
+ * Main class for the testing app
  * @author ambroisemaupate
  */
+
 public class Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
        SVGDocument svgW = new SVGDocument("px");
+
        svgW.setSVGView(300, 300);
        svgW.addDescription("This is a svg file");
 
