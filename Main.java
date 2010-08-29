@@ -1,7 +1,5 @@
 /**
  * Here is a test app for the SaViGnac API
- * This comment has been writen on my local repository
- * This comment has been writen on my remote repository
  */
 package amsavignac;
 
