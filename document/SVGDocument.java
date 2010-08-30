@@ -332,6 +332,49 @@ public class SVGDocument extends java.awt.Graphics2D {
    }
 
    /**
+    * Apply Font parameters to the given element - the Font parameters can be found with the setFont() or getFont() methods
+    * @param element
+    */
+   private void applyFontOnText( Element element ) {
+
+      System.out.println("Apply Font ------------");
+
+      if (element != null){
+         if ( this.getFont() != null ) {
+           
+            element.setAttribute("font-family", ""+this.getFont().getFamily());
+            element.setAttribute("font-size", ""+this.getFont().getSize()+"pt");
+            
+            switch (this.getFont().getStyle()) {
+               
+               case Font.BOLD :
+
+                  element.setAttribute("font-weight", "bold");
+                  break;
+
+               case Font.ITALIC :
+
+                  element.setAttribute("font-style", "italic");
+                  break;
+
+               case Font.BOLD & Font.ITALIC :
+                  
+                  element.setAttribute("font-weight", "bold");
+                  element.setAttribute("font-style", "italic");
+                  break;
+
+               default:
+                  break;
+                  
+            }
+           
+         }
+      }
+      else {
+         System.out.println("WARNING : Element is null");
+      }
+   }
+   /**
     * Write the SVG file into the given path
     * @param file Path to the writen file
     */
@@ -398,6 +441,7 @@ public class SVGDocument extends java.awt.Graphics2D {
       SVGText svgtext = new SVGText((int)x, (int)y, s);
       this.getCurrentElement().addContent(svgtext.getElement());
       this.applyPaintOnFill( this.getElementByID(svgtext.getElementID()) );
+      this.applyFontOnText( this.getElementByID(svgtext.getElementID()) );
    }
 
    public void drawString(String str, int x, int y) {
@@ -405,6 +449,7 @@ public class SVGDocument extends java.awt.Graphics2D {
       SVGText svgtext = new SVGText(x, y, str);
       this.getCurrentElement().addContent(svgtext.getElement());
       this.applyPaintOnFill( this.getElementByID(svgtext.getElementID()) );
+      this.applyFontOnText( this.getElementByID(svgtext.getElementID()) );
       
    }
    public void fill(Shape s) {

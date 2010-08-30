@@ -36,6 +36,8 @@ public class Main {
 
        svgW.setPaint(java.awt.Color.MAGENTA);
        svgW.drawRect( 200, 100, 50, 150 );
+
+       svgW.setFont(new java.awt.Font("Helvetica", java.awt.Font.BOLD & java.awt.Font.ITALIC, 12));
        svgW.drawString("Hello World !", 50, 50);
 
        svgW.closeGroup();
