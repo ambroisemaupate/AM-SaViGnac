@@ -36,6 +36,7 @@ public class Main {
 
        svgW.setPaint(java.awt.Color.MAGENTA);
        svgW.drawRect( 200, 100, 50, 150 );
+       svgW.drawString("Hello World !", 50, 50);
 
        svgW.closeGroup();
        svgW.addGroup("This is an other group");

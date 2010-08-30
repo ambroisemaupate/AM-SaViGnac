@@ -30,11 +30,25 @@ public class SVGText implements amsavignac.document.SVGElement {
 
    public Element getElement() {
 
-      return null;
+      Element textElement = new Element("text", amsavignac.document.SVGDocument.namespace);
+      textElement.setAttribute("x", ""+this.getX());
+      textElement.setAttribute("y", ""+this.getY());
+      textElement.setAttribute("id", this.getElementID());
+      textElement.setText(this.text);
+
+      return textElement;
    }
 
    public String getElementID() {
 
       return this.textID;
    }
+
+   public int getX () {
+      return this.origin.x;
+   }
+   public int getY () {
+      return this.origin.y;
+   }
+   
 }

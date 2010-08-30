@@ -392,11 +392,20 @@ public class SVGDocument extends java.awt.Graphics2D {
    public void drawString(java.text.AttributedCharacterIterator iterator, int x, int y) {
 
    }
+
    public void drawString(String s, float x, float y) {
 
+      SVGText svgtext = new SVGText((int)x, (int)y, s);
+      this.getCurrentElement().addContent(svgtext.getElement());
+      this.applyPaintOnFill( this.getElementByID(svgtext.getElementID()) );
    }
+
    public void drawString(String str, int x, int y) {
 
+      SVGText svgtext = new SVGText(x, y, str);
+      this.getCurrentElement().addContent(svgtext.getElement());
+      this.applyPaintOnFill( this.getElementByID(svgtext.getElementID()) );
+      
    }
    public void fill(Shape s) {
       
