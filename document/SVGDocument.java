@@ -17,6 +17,10 @@ import java.awt.*;
 public class SVGDocument extends java.awt.Graphics2D {
 
    /* ----------- DOM ELEMENTS ------------*/
+   /**
+    * The namespace is added to all the DOM elements.
+    * It defines the SVG namespace used by extern applications to recognize the SVG format.
+    */
    public static Namespace namespace = Namespace.getNamespace("http://www.w3.org/2000/svg");
    private Element root;
    private Element currentElement;
@@ -107,6 +111,10 @@ public class SVGDocument extends java.awt.Graphics2D {
       return group;
    }
 
+   /**
+    * Close the current element, if it is a group element <g></g>
+    * @return the parent element of the closed group or NULL
+    */
    public Element closeGroup ( ) {
       
       if (this.currentElement.getName().equals("g")) {
@@ -211,7 +219,7 @@ public class SVGDocument extends java.awt.Graphics2D {
       return this.getElementByID(id, this.getDOM().getRootElement());
    }
    /**
-    * Apply current painting parameters on the given element (Color or Gradient)
+    * Apply current painting parameters on the given element stroke (Color or Gradient)
     * @param element
     * @param strokeWidth
     */
@@ -265,7 +273,7 @@ public class SVGDocument extends java.awt.Graphics2D {
    }
 
    /**
-    * 
+    * Apply current painting parameters on the given element filling (Color or Gradient)
     * @param element
     */
    private void applyPaintOnFill( Element element ){
@@ -322,6 +330,10 @@ public class SVGDocument extends java.awt.Graphics2D {
       }
    }
 
+   /**
+    * Write the SVG file into the given path
+    * @param file Path to the writen file
+    */
    public void writeFile( String file ) {
       try
       {
@@ -337,7 +349,8 @@ public class SVGDocument extends java.awt.Graphics2D {
    }
 
    /**
-    * @return the document
+    * Return the whole DOM tree
+    * @return the document tree
     */
    public org.jdom.Document getDOM () {
       return document;
@@ -559,7 +572,9 @@ public class SVGDocument extends java.awt.Graphics2D {
 
    }
    public void drawOval(int x, int y, int width, int height) {
-
+      SVGEllipse oval = new SVGEllipse(x + (width/2), y + (height/2), width/2, height/2);
+      this.getCurrentElement().addContent(oval.getElement());
+      this.applyPaintOnStroke( this.getElementByID(oval.getElementID()), 1 );
    }
    
    public void drawPolygon(int[] xPoints, int[] yPoints, int nPoints) {
@@ -591,10 +606,20 @@ public class SVGDocument extends java.awt.Graphics2D {
    public void	fillArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
 
    }
-   public void	fillOval(int x, int y, int width, int height) {
 
+   /**
+    * 
+    * @param x
+    * @param y
+    * @param width
+    * @param height
+    */
+   public void fillOval(int x, int y, int width, int height) {
+      SVGEllipse oval = new SVGEllipse(x + (width/2), y + (height/2), width/2, height/2);
+      this.getCurrentElement().addContent(oval.getElement());
+      this.applyPaintOnFill( this.getElementByID(oval.getElementID()) );
    }
-   public void	fillPolygon(int[] xPoints, int[] yPoints, int nPoints) {
+   public void fillPolygon(int[] xPoints, int[] yPoints, int nPoints) {
 
       SVGPolygon poly = new SVGPolygon(xPoints, yPoints, nPoints);
       this.getCurrentElement().addContent(poly.getElement());

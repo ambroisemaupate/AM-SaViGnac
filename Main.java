@@ -27,8 +27,10 @@ public class Main {
        svgW.addDescription("This is a svg group");
        svgW.rotate(30, 50,50);
 
-       svgW.setPaint(new java.awt.GradientPaint(0,0,Color.red, 100, 100, Color.blue));
+       svgW.setPaint(new java.awt.GradientPaint(0,0,Color.red, 200, 200, Color.blue));
        svgW.fillRect( 0, 0, 100, 100 );
+       svgW.fillOval( 50, 50, 100, 120 );
+       
        svgW.setPaint(java.awt.Color.MAGENTA);
        svgW.drawRect( 0, 0, 100, 100 );
 

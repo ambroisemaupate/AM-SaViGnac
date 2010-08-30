@@ -8,13 +8,20 @@ package amsavignac.primitives;
 import org.jdom.*;
 
 /**
- *
+ * Describe a SVG Rectangle
  * @author ambroisemaupate
  */
 public class SVGRectangle extends java.awt.Rectangle implements amsavignac.document.SVGElement {
 
    private String rectId;
 
+   /**
+    * Create a new SVG Rectangle with its position and dimensions
+    * @param x The top-left point X coordinate
+    * @param y the top-left point Y coordinate
+    * @param width The rectangle width
+    * @param height The rectangle height
+    */
    public SVGRectangle( int x, int y, int width, int height ) {
       super(x, y, width, height );
 
@@ -23,6 +30,10 @@ public class SVGRectangle extends java.awt.Rectangle implements amsavignac.docum
       System.out.println("New SVGRectangle : ID="+this.getElementID());
    }
 
+   /**
+    * Return a rectangle DOM Element with dimension and position attributes and an unique ID
+    * @return A DOM Element
+    */
    public Element getElement() {
 
       Element rectElement = new Element("rect", amsavignac.document.SVGDocument.namespace);
@@ -36,6 +47,7 @@ public class SVGRectangle extends java.awt.Rectangle implements amsavignac.docum
    }
 
    /**
+    * Return the rectangle unique ID
     * @return the rectId
     */
    public String getElementID ()
