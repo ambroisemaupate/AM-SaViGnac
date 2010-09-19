@@ -465,9 +465,11 @@ public class SVGDocument extends java.awt.Graphics2D {
    public GraphicsConfiguration	getDeviceConfiguration() {
       return null;
    }
+
    public java.awt.font.FontRenderContext getFontRenderContext() {
-      return null;
+      return new java.awt.font.FontRenderContext(new java.awt.geom.AffineTransform(), true, true);
    }
+   
    public Paint	getPaint() {
       return this.currentPaint;
    }
